@@ -79,3 +79,62 @@
 .h-100 {
 	height: 140px;
 }
+
+//Declaring the various breakpoints
+$breakpoints: (
+  "phoneMini": 0px,
+  "phone": 300px,
+  "phonePro": 400px,
+  "tabletMini": 600px,
+  "tablet": 800px,
+  "tabletPro": 1000px,
+  "desktop": 1200px,
+);
+
+@mixin phoneMini {
+  @media only screen and (min-width: map-get($breakpoints, "phoneMini")) and (max-width: map-get($breakpoints, "phone")) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media only screen and (min-width: map-get($breakpoints, "phoneMini")) and (max-width: map-get($breakpoints, "phonePro")) {
+    @content;
+  }
+}
+
+@mixin phonePro {
+  @media only screen and (min-width: map-get($breakpoints, "phoneMini")) and (max-width: map-get($breakpoints, "tabletMini")) {
+    @content;
+  }
+}
+
+@mixin tabletMini {
+  @media only screen and (min-width: map-get($breakpoints, "tabletMini")) and (max-width: map-get($breakpoints, "tablet")){
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: map-get($breakpoints, "tabletMini")) and (max-width: map-get($breakpoints, "tabletPro")){
+    @content;
+  }
+}
+
+@mixin tabletPro {
+  @media only screen and (min-width: map-get($breakpoints, "tabletMini")) and (max-width: map-get($breakpoints, "desktop")){
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: map-get($breakpoints, "desktop")) {
+    @content;
+  }
+}
+
+@mixin breakpoint($min: 0, $max: 0) {
+  @media only screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}

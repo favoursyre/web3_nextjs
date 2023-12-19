@@ -1,3 +1,6 @@
+"use client"
+
+//Libraries
 import { GetProfile } from "@/api/profile";
 import GetCookie from '@/hooks/cookies/getCookie';
 import { GetrecentFlickers } from "@/api/recent-flickers";
@@ -9,19 +12,21 @@ import RecentFlickersTable from "../recent-flickers-table/recentFlickerTable";
 import BadgeModal from "../badge-modal/badge-modal";
 import { create } from "domain";
 import { profile } from "console";
+import { FaqModalProps } from "@/config/interfaces";
+//import { useFaqModalStore } from "@/store";
 
-interface FaqModalProps {
-	show: boolean;
-  handleModal: () => void;
-}
-
-const FaqModal:FC<FaqModalProps> = ({ show, handleModal }) => {
+//Commencing the code 
+/**
+ * @title Faq Modal Component
+ * @returns The Faq Modal component
+ */
+const FaqModal: FC<FaqModalProps> = ({ show, handleModal }) => {
   return(
 		<Modal customClass={'faq-modal'} show={show} handleModal={handleModal}>
 			<div className="faq">
-				<div className="close">
+				<button className="close" onClick={() => handleModal()}>
 					<img src="/static/svgs/close.svg" />
-				</div>
+				</button>
 				<div className="faq-title text-yellow title">
 					FAQ
 				</div>

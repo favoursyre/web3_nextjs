@@ -1,15 +1,16 @@
 "use client";
 
-import Footer from '@/components/footer/footer';
-import Navbar from '@/components/nav/nav';
+//This contains the script for react file
+
+//Libraries
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackbarProvider } from 'notistack';
 import React, { FC, createContext, useContext, useState } from 'react';
+import { LoginContext, ReactQueryProviderProps } from '@/config/interfaces';
 
-interface ReactQueryProviderProps {
-  children: React.ReactNode;
-}
-
+//Commencing the code
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,12 +18,6 @@ const queryClient = new QueryClient({
     },
   }
 });
-
-
-export type LoginContext = {
-  isLoggedin: boolean
-  setIsLoggedIn:(c: boolean) => void
-}
 
 export const Context = createContext<LoginContext>({
   isLoggedin: false,
@@ -38,15 +33,15 @@ const ReactQueryProvider:FC<ReactQueryProviderProps> = ({ children }) => {
       <QueryClientProvider client={queryClient}>
         <html lang="en">
           <body>
-            <div className="bg-wrapper">
-              <Navbar />
+            {/* <div className="bg-wrapper"> */}
+              <Header />
               <main className="main-wrapper">
                 <SnackbarProvider autoHideDuration={2000}>
                   {children}
                 </SnackbarProvider>
               </main>
               <Footer />
-            </div>
+            {/* </div> */}
           </body>
         </html>
       </QueryClientProvider>

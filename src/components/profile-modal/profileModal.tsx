@@ -1,3 +1,6 @@
+//The profile modal
+
+//Libraries
 import { GetProfile } from "@/api/profile";
 import GetCookie from '@/hooks/cookies/getCookie';
 import { GetrecentFlickers } from "@/api/recent-flickers";
@@ -9,23 +12,27 @@ import RecentFlickersTable from "../recent-flickers-table/recentFlickerTable";
 import BadgeModal from "../badge-modal/badge-modal";
 import { create } from "domain";
 import { profile } from "console";
+import { ProfileModalProps } from "@/config/interfaces";
 
-interface ProfileModalProps {
-	show: boolean;
-  handleModal: () => void;
-}
+
+///Commencing the code
 
 const RecentTable = () => {
-	const {data} = useQuery({
-    queryKey: ['recent'],
-    queryFn: async () => await GetrecentFlickers(null)
-  })
+	const { data } = useQuery({
+		queryKey: ['recent'],
+		queryFn: async () => await GetrecentFlickers(null)
+	})
+
 	return (
 		<RecentFlickersTable classname="auto" tableData={data} />
 	);
 }
 
-const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
+/**
+ * @title ProfileModal Component
+ * @returns The ProfileModal component
+ */
+const ProfileModal: FC<ProfileModalProps> = ({ show, handleModal }) => {
 	const[data, setData] = useState(null);
 	const[isError, setIsError] = useState(null);
 	const[error, setError] = useState(null);
@@ -37,6 +44,8 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 		count: 0
 	});
 	const[badges, setBadges] = useState<any[]>([]);
+
+	//conso
 
 	const badges_array = [
 		"first_flip",
@@ -82,18 +91,18 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 	}
 
 	const getProfileData = async () => {
-		console.log('###')
+		//console.log('###')
 		const profileData = await GetProfile();
 		if(profileData?.data.data.referrals?.error) {
 			// @ts-ignore
 			// enqueueSnackbar(profileData.data.data.referrals.error, {variant: 'error', anchorOrigin: {horizontal: 'center', vertical: 'center'}})
 			setError(profileData.data.data.referrals.error)
 		}
-		console.log('###', profileData)
+		//console.log('###', profileData)
 		// @ts-ignore
 		setData(profileData);
 		// @ts-ignore
-		setIsError(tempError);
+		//setIsError("tempError");
 	}
 
 	useEffect(() => {
@@ -101,7 +110,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 	}, [show])
 
 	useEffect(() => {
-		console.log('@@@', data);
+		//console.log('@@@', data);
 		const key = GetCookie('publicKey');
     	setPubkey(`${key.slice(0, 5)}....${key.slice(-8)}`);
 		
@@ -125,7 +134,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 			return true;
 		})
 
-		console.log('@@@', res)
+		//console.log('@@@', res)
 
 		let temp: any[] = res ? [...res] : [];
 		for(let i = 0; i < (9 - res?.length); i++) {
@@ -144,14 +153,14 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 				<div className="profile-header">
 					<div className="profile-header-left">
 						<img src={"/static/img/avatar.png"} />
-						<div>
+						<div className="div1">
 							<span>
 								{/* @ts-ignore */}
 								{data && data?.data.data.userName}
 							</span>
 							<span>
 								{/* @ts-ignore */}
-								{data?.data.data.publicKey.slice(0, 5)}....{data?.data.data.publicKey.slice(-8)}
+								{data ? data?.data?.data?.publicKey.slice(0, 5) : ""}....{data ? data?.data?.data?.publicKey.slice(-8) : ""}
 							</span>
 							<span>
 								Flipping since <a>{createDate}</a>
@@ -165,7 +174,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 							</span>
 							<span>
 								{/* @ts-ignore */}
-								{data?.data.data.leaderboard.current}
+								{data ? data?.data?.data?.leaderboard?.current : ""}
 							</span>
 						</div>
 						<div>
@@ -174,7 +183,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 							</span>
 							<span>
 								{/* @ts-ignore */}
-								{data?.data.data.leaderboard.best}
+								{data ? data?.data?.data?.leaderboard?.best : ""}
 							</span>
 						</div>
 					</div>
@@ -188,7 +197,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 							color: '#5BEF43'
 						}}>
 							{/* @ts-ignore */}
-							{data?.data.data.streaks.success}
+							{data ? data?.data?.data?.streaks?.success : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -199,7 +208,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 							color: '#EF4343'
 						}}>
 							{/* @ts-ignore */}
-							{data?.data.data.streaks.failure}
+							{data ? data?.data?.data?.streaks?.failure : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -210,7 +219,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 							color: '#FDCD00'
 						}}>
 							{/* @ts-ignore */}
-							{data?.data.data.points}
+							{data ? data?.data?.data?.points : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -219,7 +228,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 						</span>
 						<span>
 							{/* @ts-ignore */}
-							{data?.data.data.gamesPlayed}
+							{data ? data?.data?.data?.gamesPlayed : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -228,7 +237,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 						</span>
 						<span>
 							{/* @ts-ignore */}
-							{Math.round((parseFloat(data?.data.data.insights.totalAmountBet) + Number.EPSILON) * 100) / 100}
+							{data ? (Math.round((parseFloat(data?.data?.data?.insights?.totalAmountBet) + Number.EPSILON) * 100) / 100) : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -237,7 +246,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 						</span>
 						<span>
 							{/* @ts-ignore */}
-							{data?.data.data.insights.winningPercentage}
+							{data ? data?.data?.data?.insights?.winningPercentage : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -246,7 +255,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 						</span>
 						<span>
 							{/* @ts-ignore */}
-							{Math.round((parseFloat(data?.data.data.insights.totalEarnings) + Number.EPSILON) * 100) / 100}
+							{data ? (Math.round((parseFloat(data?.data?.data?.insights?.totalEarnings) + Number.EPSILON) * 100) / 100) : ""}
 						</span>
 					</div>
 					<div className="profile-value-item">
@@ -255,7 +264,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 						</span>
 						<span>
 							{/* @ts-ignore */}
-							{Math.round((parseFloat(data?.data.data.insights.averageBetAmount) + Number.EPSILON) * 100) / 100}
+							{data ? (Math.round((parseFloat(data?.data?.data?.insights?.averageBetAmount) + Number.EPSILON) * 100) / 100) : ""}
 						</span>
 					</div>
 					
@@ -278,7 +287,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 									recentData ? recentData.map((item, index) => (
 										<li className="primary-list__item" key={index}>
 										{/* <div className="primary-list__col">{item?.public_key.slice(0, 5)}...{item?.public_key.slice(-5)}</div> */}
-										<div className="primary-list__col-2">flipped <span>{Math.round((parseFloat(item.bet_amount) + Number.EPSILON) * 100) / 100} ACD3</span> and <span style={{color: item.outcome == 'lost' ? '#EF4343' : '#5BEF43'}}>{item.outcome}</span></div>
+										<div className="primary-list__col-2">flipped <span>{Math.round((parseFloat(item?.bet_amount) + Number.EPSILON) * 100) / 100} ACD3</span> and <span style={{color: item.outcome == 'lost' ? '#EF4343' : '#5BEF43'}}>{item.outcome}</span></div>
 										<div className="primary-list__col-3">{item.timeAgo}</div>
 										</li>
 									)) : <p style={{ textAlign: 'center', marginTop: 50 }}>Loading Data</p>
@@ -312,7 +321,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 									</span>
 									<span>
 										{/* @ts-ignore */}
-										{data?.data.data.referrals.referral_code}
+										{data ? data?.data?.data?.referrals?.referral_code : ""}
 									</span>
 								</div>
 								<img 
@@ -327,7 +336,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 									</span>
 									<span>
 										{/* @ts-ignore */}
-										{data?.data.data.referrals.total_number_of_users_referred}
+										{data ? data?.data?.data?.referrals?.total_number_of_users_referred : ""}
 									</span>
 								</div>
 								<div className="total_earned">
@@ -336,7 +345,7 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 									</span>
 									<span>
 										{/* @ts-ignore */}
-										{data?.data.data.referrals.total_earned_through_referrals}
+										{data ? data?.data?.data?.referrals?.total_earned_through_referrals : ""}
 									</span>
 								</div>
 							</div>
@@ -348,11 +357,11 @@ const ProfileModal:FC<ProfileModalProps> = ({ show, handleModal }) => {
 							Badges
 						</div>
 						<div className="content">
-							{
-								badges?.map(item => <div className="item" onClick={() => item.name !== 'blank_badge' && handleBadgeModal(item.name, item.count)}>
+							{badges?.map((item, id) => (
+								<div className="item" key={id} onClick={() => item.name !== 'blank_badge' && handleBadgeModal(item.name, item.count)}>
 									<img src={`/static/svgs/${item.name}.svg`} className={`${item.name === 'blank_badge' && 'blank'}`}/>
-								</div>)
-							}
+								</div>
+							))}
 						</div>
 					</div>
 				</div>

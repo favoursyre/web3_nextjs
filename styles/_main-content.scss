@@ -17,52 +17,382 @@
 	width: 1200px;
 	margin: 20px auto 0;
 	display: flex;
-}
-.result {
-	background-image: url('../public/static/img/border.png');
-	background-repeat: no-repeat;
-	width: 683px;
-	height: 534px;
-	user-select: none;
+	//border: 1px solid green;
+	position: relative;
+	width: 90%;
+	height: 70%;
 
-	img {
-		width: 400px;
+	@include phonePro {
+		position: relative;
+		top: 65px;
+		height: 1000px;
+		flex-direction: column;
+		//border: 1px solid red;
 	}
 
-	&__title {
-		font-family: "Press Start 2P";
-		font-weight: 400;
-		font-size: 16px;
-		line-height: 48px;
-
-		color: rgba(255, 255, 255, 1);
-		text-shadow: 0px 0px 24px rgba(255, 255, 255, 1) inset;
-		text-shadow: 0px 2px 12px rgba(255, 255, 255, 1);
-		text-shadow: 0px 2px 44px rgba(255, 255, 255, 1);
-	}
-
-	&__subtitle {
-		font-family: "Press Start 2P";
-		font-weight: 400;
-		font-size: 24px;
-		line-height: 24px;
-
-	}
+	.result {
+		background-image: url('../public/static/img/border.png');
+		background-repeat: no-repeat;
+		width: 683px;
+		height: 534px;
+		user-select: none;
+		//border: 1px solid green;
 	
-	.text-success {
-		color: rgba(91, 239, 67, 1);
-		text-shadow: 0px 0px 24px rgba(91, 239, 67, 1) inset;
-		text-shadow: 0px 2px 12px rgba(91, 239, 67, 1);
-		text-shadow: 0px 2px 44px rgba(91, 239, 67, 1);
+		@include phonePro {
+			width: 100%;
+			height: 25%;
+		}
+	
+		img {
+			width: 400px;
+		}
+	
+		&__title {
+			font-family: "Press Start 2P";
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 48px;
+	
+			color: rgba(255, 255, 255, 1);
+			text-shadow: 0px 0px 24px rgba(255, 255, 255, 1) inset;
+			text-shadow: 0px 2px 12px rgba(255, 255, 255, 1);
+			text-shadow: 0px 2px 44px rgba(255, 255, 255, 1);
+		}
+	
+		&__subtitle {
+			font-family: "Press Start 2P";
+			font-weight: 400;
+			font-size: 24px;
+			line-height: 24px;
+	
+		}
+		
+		.text-success {
+			color: rgba(91, 239, 67, 1);
+			text-shadow: 0px 0px 24px rgba(91, 239, 67, 1) inset;
+			text-shadow: 0px 2px 12px rgba(91, 239, 67, 1);
+			text-shadow: 0px 2px 44px rgba(91, 239, 67, 1);
+		}
+	
+		.text-alert {
+			color: rgba(239, 67, 67, 1);
+			text-shadow: 0px 0px 24px rgba(239, 67, 67, 1) inset;
+			text-shadow: 0px 2px 12px rgba(239, 67, 67, 1);
+			text-shadow: 0px 2px 44px rgba(239, 67, 67, 1);
+		}
 	}
 
-	.text-alert {
-		color: rgba(239, 67, 67, 1);
-		text-shadow: 0px 0px 24px rgba(239, 67, 67, 1) inset;
-		text-shadow: 0px 2px 12px rgba(239, 67, 67, 1);
-		text-shadow: 0px 2px 44px rgba(239, 67, 67, 1);
+	.btns {
+		//border: 1px solid indigo;
+
+		@include phonePro {
+			height: 70%;
+		}
+
+		.btns-control {
+			display: flex;
+			justify-content: space-between;
+			padding: 20px;
+			//border: 1px solid red;
+
+			@include tabletPro {
+				gap: 5%;
+			}
+
+			@include phonePro {
+				flex-direction: column;
+				height: 75%;
+			}
+
+			&-right {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				//border: 1px solid green;
+
+				@include phonePro {
+					width: 100%;
+					height: 30%;
+					top: 10px;
+				}
+
+				@include phoneMini {
+					position: relative;
+					width: 120%;
+					left: -10%;
+				}
+		
+				.switch {
+					height: 388px;
+					width: 106px;
+					position: relative;
+					cursor: pointer;
+
+					@include phonePro {
+						//border: 1px solid white;
+						transform: rotate(0deg);
+						height: 90%;
+						width: 100%;
+						top: 15%;
+					}
+
+					
+		
+					&-fix {
+						position: absolute;
+						height: 106px;
+						width: 62px;
+						top: 194px;
+						left: 54px;
+						transform: translate(-50%,50%);
+						
+						//border: 1px solid white;
+
+						@include phonePro {
+							transform: rotate(90deg) translate(-120%,-70%);
+							//transform: translate(-50%,50%);
+						}
+
+						@include phoneMini {
+							left: 5%;
+							top: 200px;
+						}
+					}
+		
+					&-node {
+						position: absolute;
+						width: 29.44px;
+						height: 100px;
+						left: 54px;
+						bottom: 194px;
+						transform: translate(-50%,-10%);
+						transition: all 0.5s;
+		
+						@include phonePro {
+							transform: rotate(90deg) translate(560%,-130%);
+						}
+
+						@include phoneMini {
+							transform: rotate(90deg) translate(680%, -100%);
+							width: 24px;
+							height: 90px;
+						}
+					}
+		
+					&-ball {
+						position: absolute;
+						width: 106px;
+						height: 106px;
+						left: 54px;
+						bottom: 194px;
+						transform: translate(-50%,-80%);
+						transition: all 0.5s;
+		
+						@include phonePro {
+							transform: rotate(90deg) translate(170%,-175%);
+							width: 90px;
+							height: 90px;
+						}
+
+						@include phoneMini {
+							transform: rotate(90deg) translate(215%,-175%);
+							width: 70px;
+							height: 70px;
+						}
+					}
+
+					&-arrow {
+						//z-index: 5;
+
+						@include phonePro {
+							transform: rotate(90deg) translate(20%, 150%);
+						}
+
+						@include phoneMini {
+							transform: rotate(90deg) translate(35%, 120%);
+						}
+					}
+				}
+		
+				.active {
+					.switch-node {
+						transform: translate(-50%,100%)  rotateX(180deg) ;
+
+						@include phonePro {
+							transform: rotate(90deg) rotateX(200deg)  translate(560%, 50%);
+						}
+						
+						@include phoneMini {
+							transform: rotate(90deg) rotateX(200deg)  translate(700%, 20%);
+						}
+					}
+		
+					.switch-ball {
+						transform: translate(-50%,170%);
+
+						@include phoneMini {
+							transform: translate(-80%, 220%)
+						}
+					}
+				}
+		
+				img {
+						width: 80px;
+						height: 80px;
+						margin-top: -120px;
+						//border: 1px solid red;
+				}
+			}
+		
+			&-left {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: stretch;
+				position: relative;
+				//border: 1px solid white;
+
+				@include phonePro {
+					width: 100%;
+				}
+
+				@include phoneMini {
+					width: 120%;
+					left: -10%;
+				}
+			}
+		}
+		
+		.btns-display {
+			display: flex;
+			gap: 4px;
+			margin: 20px;
+			//border: 1px solid green;
+
+			@include phonePro {
+				height: 20%;
+			}
+
+			@include phoneMini {
+				position: relative;
+				width: 100%;
+				left: -11%;
+			}
+		
+			&-points {
+				display: inline-block;
+				background-color: rgba(7, 10, 18, 1);
+				border: 3px solid rgba(0,0,0,1);
+				border-radius: 12px;
+				padding: 16px;
+				height: 100%;
+		
+				&-title {
+					font-family: 'Play';
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 18.51px;
+					color: rgba(255, 255, 255, 0.75);
+				}
+		
+				&-value {
+					margin-top: 20px;
+					font-family: 'Digital Numbers';
+					font-weight: 400;
+					font-size: 24px;
+					line-height: 30.98px;
+					color: rgba(14, 21, 37, 1);
+		
+					span {
+						color: rgba(253, 205, 0, 1);
+					}
+				}
+			}
+		
+			&-recent {
+				flex: 1;
+				display: inline-block;
+				background-color: rgba(7, 10, 18, 1);
+				border: 3px solid rgba(0,0,0,1);
+				border-radius: 12px;
+				padding: 16px 8px 4px;
+		
+				&-title {
+					font-family: 'Play';
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 18.51px;
+					color: rgba(255, 255, 255, 0.75);
+					display: flex;
+					justify-content: space-between;
+		
+					span {
+						&:nth-child(2) {
+							color: rgba(253, 205, 0, 0.75);
+						}
+					}
+				}
+		
+				&-value {
+					height: 50px;
+					overflow: hidden;
+					
+					&-row {
+						display: flex;
+						margin-top: 8px;
+						img {
+							width: 32px;
+							height: 32px;
+						}
+			
+						div {
+							font-family: 'Play';
+							font-weight: 400;
+							font-size: 14px;
+							line-height: 16.2px;
+							color:rgba(255, 255, 255, 1);
+			
+							.balance {
+								color: rgba(173, 255, 201, 1);
+								font-weight: 700;
+							}
+			
+							.bold {
+								font-weight: 700;
+							}
+			
+							.lost {
+								color: rgba(239, 67, 67, 1);
+								font-weight: 700;
+							}
+			
+							.won {
+								color: rgba(91, 239, 67, 1);
+								font-weight: 700;
+							}
+						}
+					}
+		
+					&::-webkit-scrollbar {
+						width: 3px;
+					}
+					
+					/* Track */
+					&::-webkit-scrollbar-track {
+						background: #d9d9d9;
+					}
+					
+					/* Handle */
+					&::-webkit-scrollbar-thumb {
+						background: #343434;
+					}
+				}
+			}
+		}
 	}
 }
+
+
 
 .btns-inner-wrapper {
 	flex: 1;
@@ -83,210 +413,43 @@
 	grid-template-columns: repeat(3, 1fr);
 	justify-items: center;
 	gap: 32px;
-}
 
-.btns-control {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px;
-	&-right {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	button {
+		//border: 1px solid red;
 
-		.switch {
-			height: 388px;
-			width: 106px;
+		@include phoneMini {
 			position: relative;
-			cursor: pointer;
-
-			&-fix {
-				position: absolute;
-				height: 106px;
-				width: 62px;
-				top: 194px;
-				left: 54px;
-				transform: translate(-50%,50%);
-			}
-
-			&-node {
-				position: absolute;
-				width: 29.44px;
-				height: 100px;
-				left: 54px;
-				bottom: 194px;
-				transform: translate(-50%,-10%);
-				transition: all 0.5s;
-
-				&:hover {
-					
-				}
-			}
-
-			&-ball {
-				position: absolute;
-				width: 106px;
-				height: 106px;
-				left: 54px;
-				bottom: 194px;
-				transform: translate(-50%,-80%);
-				transition: all 0.5s;
-
-				&:hover {
-					
-				}
-			}
-		}
-
-		.active {
-			.switch-node {
-				transform: translate(-50%,100%) rotateX(180deg);
-			}
-
-			.switch-ball {
-				transform: translate(-50%,180%);
-			}
-		}
-
-		img {
-				width: 80px;
-				height: 80px;
-				margin-top: -120px;
-		}
-	}
-
-	&-left {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: stretch;
-	}
-}
-
-.btns-display {
-	display: flex;
-	gap: 4px;
-	margin: 20px;
-
-	&-points {
-		display: inline-block;
-		background-color: rgba(7, 10, 18, 1);
-		border: 3px solid rgba(0,0,0,1);
-		border-radius: 12px;
-		padding: 16px;
-		height: 100%;
-
-		&-title {
-			font-family: 'Play';
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 18.51px;
-			color: rgba(255, 255, 255, 0.75);
-		}
-
-		&-value {
-			margin-top: 20px;
-			font-family: 'Digital Numbers';
-			font-weight: 400;
-			font-size: 24px;
-			line-height: 30.98px;
-			color: rgba(14, 21, 37, 1);
-
-			span {
-				color: rgba(253, 205, 0, 1);
-			}
-		}
-	}
-
-	&-recent {
-		flex: 1;
-		display: inline-block;
-		background-color: rgba(7, 10, 18, 1);
-		border: 3px solid rgba(0,0,0,1);
-		border-radius: 12px;
-		padding: 16px 8px 4px;
-
-		&-title {
-			font-family: 'Play';
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 18.51px;
-			color: rgba(255, 255, 255, 0.75);
-			display: flex;
-			justify-content: space-between;
-
-			span {
-				&:nth-child(2) {
-					color: rgba(253, 205, 0, 0.75);
-				}
-			}
-		}
-
-		&-value {
-			height: 50px;
-			overflow: hidden;
-			
-			&-row {
-				display: flex;
-				margin-top: 8px;
-				img {
-					width: 32px;
-					height: 32px;
-				}
-	
-				div {
-					font-family: 'Play';
-					font-weight: 400;
-					font-size: 14px;
-					line-height: 16.2px;
-					color:rgba(255, 255, 255, 1);
-	
-					.balance {
-						color: rgba(173, 255, 201, 1);
-						font-weight: 700;
-					}
-	
-					.bold {
-						font-weight: 700;
-					}
-	
-					.lost {
-						color: rgba(239, 67, 67, 1);
-						font-weight: 700;
-					}
-	
-					.won {
-						color: rgba(91, 239, 67, 1);
-						font-weight: 700;
-					}
-				}
-			}
-
-			&::-webkit-scrollbar {
-				width: 3px;
-			}
-			
-			/* Track */
-			&::-webkit-scrollbar-track {
-				background: #d9d9d9;
-			}
-			
-			/* Handle */
-			&::-webkit-scrollbar-thumb {
-				background: #343434;
-			}
+			//height: 50%;
+			width: 85%;
 		}
 	}
 }
+
 
 .btns-row {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	//border: 1px solid white;
+
+	button {
+		//border: 1px solid red;
+
+		@include phoneMini {
+			position: relative;
+			height: 120px;
+			width: 45%;
+		}
+	}
 
 	button img {
 		width: 120px;
 		height: 142px;
+
+		@include phoneMini {
+			width: 150px;
+			height: 122px;
+		}
 	}
 }
 

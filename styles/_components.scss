@@ -1,75 +1,146 @@
-.home-content {
-	display: flex;
-	width: 1200px;
-}
+@import "utilities";
 
-.heading-primary {
-	color: var(--white);
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 28px;
-	font-style: normal;
-	font-weight: 600;
-	line-height: normal;
-	margin: auto;
-	flex: 60%;
+.home-container {
+	//border: 1px solid red;
+	display: flex;
 	position: relative;
-	// border: 1px solid red;
+	top: 20px;
+	width: 90%;
+	height: 70%;
 
-	img {
-		&:nth-child(1) {
-			border-radius: 24px;
-		}
-
-		&:nth-child(2) {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-		}
+	@include tabletPro {
+		//border: 1px solid yellow;
 	}
 
-	@media (min-width: 1440px) {
-		font-size: 32px;
+	.home-content {
+		display: flex;
+		position: relative;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		//border: 1px solid white;
+
+		@include tabletPro {
+			align-items: flex-start;
+			justify-content: flex-start;
+		}
+
+		@include phonePro {
+			flex-direction: column;
+		}
+
+		.heading-primary {
+			color: var(--white);
+			//border: 1px solid yellow;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 28px;
+			font-style: normal;
+			font-weight: 600;
+			//line-height: normal;
+			margin: auto;
+			//flex: 60%;
+			position: relative;
+			width: 60%;
+			height: 100%;
+			// border: 1px solid red;
+
+			@include tabletPro {
+				width: 50%;
+				top: -100px;
+			}
+
+			@include phonePro {
+				width: 100%;
+				height: 40%;
+				//top: -100px;
+			}
+		
+			img {
+				
+
+				&:nth-child(1) {
+					border-radius: 24px;
+				}
+		
+				&:nth-child(2) {
+					position: absolute;
+					//border: 1px solid red;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
+		
+			@media (min-width: 1440px) {
+				font-size: 32px;
+			}
+		}
+		
+		.heading-primary__thick {
+			font-weight: 800;
+		}
+		
+		.center-area {
+			//border: 1px solid red;
+			//flex: 40%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			width: 40%;
+			height: 100%;
+			gap: 20px;
+			padding: 2% 0%;
+
+			@include tabletPro {
+				width: 50%;
+			}
+
+			@include phonePro {
+				width: 100%;
+				height: 50%;
+				//top: -100px;
+			}
+		
+			& > span {
+				text-align: center;
+				font-family: 'Press Start 2P';
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 48px;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 1);
+				text-shadow:  0px 0px 24px #FFFFFF;
+				text-shadow: 0px 2px 12px #FFFFFF;
+				text-shadow: 0px 2px 44px #FFFFFF;
+			}	
+		
+			.start_button {
+				background: url('../public/static/img/start_button.png') no-repeat;
+				width: 225px;
+				height: 101px;
+				cursor: pointer;
+				margin: 20px 0px;
+		
+				&:active {
+					background: url('../public/static/img/start_button_active.png') no-repeat;
+				}
+			}
+		}
 	}
 }
 
-.heading-primary__thick {
-	font-weight: 800;
+
+.play-container {
+	//border: 1px solid red;
 }
 
-.center-area {
-	flex: 40%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 
-	& > span {
-		text-align: center;
-		font-family: 'Press Start 2P';
-		font-weight: 400;
-		font-size: 24px;
-		line-height: 48px;
-		text-transform: uppercase;
-		color: rgba(255, 255, 255, 1);
-		text-shadow:  0px 0px 24px #FFFFFF;
-		text-shadow: 0px 2px 12px #FFFFFF;
-		text-shadow: 0px 2px 44px #FFFFFF;
-	}	
 
-	.start_button {
-		background: url('../public/static/img/start_button.png') no-repeat;
-		width: 225px;
-		height: 101px;
-		cursor: pointer;
-		margin: 20px 0px;
-
-		&:active {
-			background: url('../public/static/img/start_button_active.png') no-repeat;
-		}
-	}
-}
 
 .secondary-heading {
 	color: var(--white);
@@ -113,13 +184,30 @@
 	box-shadow: 0px -1px 1px 0px rgba(255, 255, 255, 0.05);
 	box-shadow: 0px -1px 1px 3px rgba(0, 0, 0, 0.4) inset;
 	position: relative;
+	//border: 1px solid green;
+	height: 40%;
+	position: relative;
+	top: 10px;
+	width: 80%;
+
+	@include phonePro {
+		top: 0px;
+	}
 
 	&--home {
 		width: 470px;
+
+		@include phonePro {
+			width: 100%;
+		}
 	}
 
 	&--auto {
 		width: 100%;
+	}
+
+	@include tablet {
+		left: -60px;
 	}
 	
 	&__header {
@@ -210,6 +298,10 @@
 	font-size: 16px;
 	color: #ADFFC9;
 	line-height: 18.51px;
+
+	@include phonePro {
+		font-size: 13px;
+	}
 }
 .primary-list__col-2 {
 	flex: 2;
@@ -218,6 +310,11 @@
 	color: #FFFFFF;
 	line-height: 18.51px;
 	opacity: 0.6;
+
+	@include phonePro {
+		font-size: 13px;
+	}
+
 	span {
 		&:nth-child(1) {
 			font-weight: 700;
@@ -238,6 +335,10 @@
 
 	color: rgba(#FFFFFF, 0.25);
 	text-align: right;
+
+	@include phonePro {
+		font-size: 13px;
+	}
 }
 
 .hamburger {
@@ -357,7 +458,25 @@
 }
 
 .faq {
+	//border: 1px solid red;
+	position: relative;
 	width: 500px;
+	height: 1000px;
+	height: auto;
+
+	&:hover {
+		overflow-y: auto;
+	}
+
+	@include phonePro {
+		//width: 100px;
+		//overflow-x: auto;
+		//border: 1px solid red;
+	}
+
+	// .close { 
+	// 	//border: 1px solid red
+	// }
 
 	&__wrapper {
 		&:not(:last-child) {
@@ -427,6 +546,10 @@
 	}
 }
 
+.play-modal {
+	//border: 1px solid red;
+}
+
 .profile {
 	width: 1050px;
 	position: fixed;
@@ -436,16 +559,48 @@
 	height: 100%;
 	background-color: #0B101D;
 	padding: 16px;
+	//border: 1px solid red;
+
+	@include tabletPro {
+		width: 90%;
+	}
+
+	@include phonePro {
+		width: 90%;
+		overflow-y: auto;
+	}
 
 	&-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		//border: 1px solid red;
+
 		&-left {
 			display: flex;
+
+			@include phoneMini {
+				flex-direction: column;
+			}
+
 			img {
 				width: 168px;
 				height: 168px;
+
+				@include phonePro {
+					width: 150px;
+					height: 150px;
+				}
+
+				@include phone {
+					width: 130px;
+					height: 130px;
+				}
+
+				@include phoneMini {
+					width: 100px;
+					height: 100px;
+				}
 			}
 
 			div {
@@ -455,6 +610,13 @@
 				align-items: flex-start;
 				padding: 12px 0px;
 				gap: 8px;
+				//border: 1px solid red;
+
+				@include phoneMini {
+					position: relative;
+					width: 100%;
+					height: 50%;
+				}
 
 				span {
 					&:first-child {
@@ -575,6 +737,15 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 8px;
+		//border: 1px solid red;
+
+		@include phonePro {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@include phoneMini {
+			grid-template-columns: repeat(2, 1fr);
+		}
 
 		&-item {
 			border: 3px solid #000000;
@@ -585,6 +756,7 @@
 			height: 112px;
 			padding: 16px;
 			border-radius: 8px;
+			//border: 1px solid red;
 
 			span {
 				display: block;
@@ -616,6 +788,11 @@
 		grid-template-columns: repeat(3, 1fr);
 		gap: 8px;
 		margin-top: 30px;
+		//border: 1px solid red;
+
+		@include phonePro {
+			grid-template-columns: repeat(1, 1fr);
+		}
 
 		& > div {
 			border: 3px solid #000000;
@@ -643,16 +820,29 @@
 		}
 
 		.history {
+			//border: 1px solid red;
+
 			.title {
 				
 			}
+
 			.content {
+				//border: 1px solid red;
 				height: 100%;
+
 				.primary-list {
 					height: 100%;
 					border: 0px;
 					background-color: transparent;
 					box-shadow: none;
+					//border: 1px solid red;
+					width: 100%;
+
+					@include tablet {
+						position: relative;
+						left: 0%;
+						//transform: translate(110%, 100%);
+					}
 
 					&__header {
 						padding: 0px;
@@ -660,6 +850,9 @@
 
 					ul {
 						height: 280px !important;
+						//border: 1px solid white;
+
+						
 					}
 				}
 
@@ -876,6 +1069,12 @@
 	background-color: #0B101D;
 	padding: 32px 48px;
 
+	@include phonePro {
+		overflow-y: auto;
+		width: 100%;
+		padding: 10% 7%;
+	}
+
 	.content {
 		margin-top: 40px;
 
@@ -906,6 +1105,10 @@
 		color: #FDCD00;
 
 		text-shadow: 0px 2px 4px #FDCD0080;
+
+		@include phonePro {
+			font-size: 14px;
+		}
 	}
 
 	.text-white {
@@ -915,6 +1118,10 @@
 		line-height: 19px;
 		letter-spacing: 0em;		
 		color: #FFFFFF;
+
+		@include phonePro {
+			font-size: 13px;
+		}
 	}
 
 	.title {
@@ -1236,11 +1443,28 @@
 	padding: 20px;
 	background-color: var(--white);
 	color: var(--black);
-	&__right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+	//border: 1px solid red;
+
+	@include phonePro {
+		width: 95%;
 	}
+
+	&__right {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		//border: 1px solid red;
+
+		@include phone {
+			position: relative;
+			left: -10%;
+		}
+
+		@include phoneMini {
+			left: -60%;
+		}
+	}
+
 	&__input-groupt {
 		width: 100%;
 		height: 40px;

@@ -1,18 +1,16 @@
+//The script for recent flickers
+
+//Libraries
 import { FC, useEffect } from "react";
+import { tableData, RecentFlickersTableProps } from "@/config/interfaces";
 
-interface tableData {
-  bet_amount: string;
-  outcome: string;
-  timeAgo: string;
-  public_key: string;
-}
+///Commencing the code
 
-interface RecentFlickersTableProps {
-  tableData: Array<tableData>;
-  classname?: string;
-}
-
-const RecentFlickersTable:FC<RecentFlickersTableProps> = ({ tableData, classname }) => {
+/**
+ * @title RecentFlickersTable Component
+ * @returns The RecentFlickersTable component
+ */
+const RecentFlickersTable: FC<RecentFlickersTableProps> = ({ tableData, classname }) => {
   useEffect(() => {
   //  console.log('@@@', tableData) 
   })

@@ -1,14 +1,20 @@
+//The script for add fund modal
+
+//Libraries
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import Modal from "../modal/modal";
+import { AddFundModalProps } from "@/config/interfaces";
 
-interface AddFundModalProps {
-  show: boolean;
-  handleModal: () => void;
-}
+///Commencing the code
 
-const AddFundModal:FC<AddFundModalProps> = ({ show, handleModal }) => {
+/**
+ * @title AddFundModal Component
+ * @returns The AddFundModal component
+ */
+const AddFundModal: FC<AddFundModalProps> = ({ show, handleModal }) => {
   const router = useRouter();
+  
   return(
     <Modal customClass={'flip-modal'} show={show} handleModal={handleModal}>
         <h1 className="heading-primary">You need acd3 to play</h1>

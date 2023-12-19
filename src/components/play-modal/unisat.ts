@@ -9,9 +9,10 @@ import { enqueueSnackbar } from 'notistack';
 export const handleUnisat = async () => {
   // @ts-ignore
   let uniSat = window.unisat;
+  console.log("Unisat: ", uniSat)
   let cookie = GetCookie('userId');
 
-  if (typeof uniSat !== 'undefined' && cookie == '') {
+  if (typeof uniSat !== 'undefined' && cookie === '') {
     try {
       const address = await uniSat.requestAccounts();
       SetCookie('address', address[0])
@@ -20,7 +21,8 @@ export const handleUnisat = async () => {
       console.log('connect failed');
     }
   } else {
-    return true;
+    enqueueSnackbar('Unisat Wallet Not Detected', {variant: 'error', anchorOrigin: {horizontal: 'left', vertical: 'top'}})
+    return false;
   }
 }
 

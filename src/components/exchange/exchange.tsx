@@ -7,9 +7,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import GetCookie from "@/hooks/cookies/getCookie";
 import SetCookie from "@/hooks/cookies/setCookie";
 import RecentFlickersModal from "../recent-flickers-modal/recentFlickersModal";
-import {
-	useBalanceStore,
-} from '../../store'
+import { useBalanceStore } from '@/store'
 
 const Exchange = () => {
 	const[refetching, setRefetching] = useState(false);

@@ -25,32 +25,32 @@ const HomeContent:FC = () => {
   useEffect(() => {
 		setIsLoggedIn(true);
     router.push('/flip-coin');
-    console.log("component mounted", search);
-  }, [])
+    //console.log("component mounted", search);
+  }, [isLoggedin])
 
   if(isLoading) {
-    console.log("Loading");
+    //console.log("Loading");
   }
+
   if (data) {
-    console.log(data);
+    //console.log(data);
   }
 
   if(isRefetching) {
-    console.log('isRefetching');
+    //console.log('isRefetching');
     
   }
 
   const handleModal = () => {
     setShowModal(!showModal)
   }
+  
   return(
-    <div>
+    <div className="home-container">
       <div className="home-content">
-        <section>
-          <h1 className="heading-primary">
+        <section className="heading-primary">
             <img src="/static/img/border.png" alt="border"/>
             <img src="/static/img/landing.png" alt="landing"/>
-          </h1>
         </section>
         <section className="center-area">
           <span>

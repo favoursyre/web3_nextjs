@@ -1,18 +1,30 @@
+//The script for modal
+
+//Libraries
 import { FC } from "react";
+import { ModalProps } from "@/config/interfaces";
 
-interface ModalProps {
-	show: boolean;
-  handleModal: () => void;
-  children: any;
-  customClass: string;
-}
+///Commencing the code
 
-const Modal:FC<ModalProps> = ({ show, handleModal, children, customClass }) => {
+/**
+ * @title Modal Component
+ * @returns The Modal component
+ */
+const Modal: FC<ModalProps> = ({ show, handleModal, children, customClass }) => {
+
+  //console.log('Children: ', children)
+
   return(
     <div className={`modal ${customClass}  ${show ? 'show' : ''}`}>
-      <div className="modal_back" onClick={handleModal}></div>
+      <div className="modal_back" onClick={() => {
+        handleModal()
+        if (customClass === "play-modal") {
+          window.location.reload()
+        }
+      }}></div>
 			<div className="modal__content">
-				{children}
+				{/* {isNaN(children) ? <></> : children} */}
+        {children}
 			</div>
 		</div>
   )

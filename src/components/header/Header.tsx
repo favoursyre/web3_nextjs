@@ -1,5 +1,8 @@
 "use client"
 
+//This is the header component
+
+//Libraries
 import { useGlobalContext } from '@/app/react-query-provider/reactQueryProvider';
 import GetCookie from '@/hooks/cookies/getCookie';
 import RemoveCookie from '@/hooks/cookies/removeCookie';
@@ -7,21 +10,25 @@ import { usePathname, useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from "react";
 import FAQModal from '../faq-modal/FAQModal';
 import ProfileModal from '../profile-modal/profileModal';
-import {
-  useBalanceStore,
-} from '../../store'
-interface NavbarProps {
-}
+import { useBalanceStore } from '@/store'
 
-const Navbar:FC<NavbarProps> = () => {
+///Commencing the code
+
+/**
+ * @title Header Component
+ * @returns The Header component
+ */
+const Header: FC = () => {
   const pathName = usePathname();
   const router = useRouter();
-  const[openNav, setOpneNav] = useState(false);
+  const[openNav, setOpenNav] = useState(false);
   const[showFaqModal, setShowFaqModal] = useState(false);
   const[showProfileModal, setShowProfileModal] = useState(false);
   const[pubKey, setPubkey] = useState('');
   const { isLoggedin, setIsLoggedIn } = useGlobalContext();
   let balance = useBalanceStore(state => state.balance);
+
+  //console.log("NaN: ", "null" - 2)
 
   useEffect(() => {
     const key = GetCookie('publicKey');
@@ -29,7 +36,7 @@ const Navbar:FC<NavbarProps> = () => {
   }, [pubKey])
 
   const handleNavbar = () => {
-    setOpneNav(!openNav);
+    setOpenNav(!openNav);
   }
 
   const handleFaqModal = () => {
@@ -37,6 +44,8 @@ const Navbar:FC<NavbarProps> = () => {
   }
 
   const handleProfileModal = () => {
+    //console.log("profile modal")
+    //console.log("loh: ", isLoggedin)
     setShowProfileModal(!showProfileModal);
   }
 
@@ -70,11 +79,10 @@ const Navbar:FC<NavbarProps> = () => {
         
       </div>
       <div className="header__wrap">
-        <div className="header__wrap">
-          { pathName === '/flip-coin' && (
+      { pathName === '/flip-coin' && (
             <>
               <div>
-                <button className="btn-outline btn-deposit" onClick={() => router.push('/exchange')}><img src="/static/svgs/deposit.svg" />Deposit</button>
+                <button className="btn-outline btn-deposit" onClick={() => router.push('/exchange')}><img src="/static/svgs/deposit.svg" /><span>Deposit</span></button>
                 {/* <button className="btn-outline ml-10" onClick={() => router.push('/deposit')}>Deposit / Withdraw</button> */}
               </div>
 
@@ -106,7 +114,6 @@ const Navbar:FC<NavbarProps> = () => {
               </div>
             </>
           )}
-        </div>
         {/* <div className={`hamburger ${openNav ? 'open' : ''}`} onClick={handleNavbar}>
           <span></span>
           <span></span>
@@ -125,9 +132,10 @@ const Navbar:FC<NavbarProps> = () => {
         </nav>
       </div>
       <FAQModal show={showFaqModal} handleModal={handleFaqModal} />
-      { isLoggedin && <ProfileModal show={showProfileModal} handleModal={handleProfileModal} /> }
+      {/* { isLoggedin && <ProfileModal show={showProfileModal} handleModal={handleProfileModal} /> } */}
+      <ProfileModal show={showProfileModal} handleModal={handleProfileModal} />
     </header>
   )
 }
 
-export default Navbar;
+export default Header;

@@ -12,41 +12,47 @@ export const handleXverse = async () => {
   let address = '';
   let publicKey = '';
 
-  const getAddressOptions = {
-    payload: {
-      purposes: ['payment'],
-      message: hash,
-      network: {
-        type: 'Mainnet'
+  try {
+    const getAddressOptions = {
+      payload: {
+        purposes: ['payment'],
+        message: hash,
+        network: {
+          type: 'Mainnet'
+        },
       },
-    },
-    onFinish: (response: any) => {
-      address = response.addresses[0].address;
-      publicKey = response.addresses[0].publicKey;
-    },
-    onCancel: () => enqueueSnackbar('Dismissed', {variant: 'error', anchorOrigin: {horizontal: 'left', vertical: 'top'}}),
-  };
-
-  // @ts-ignore
-  await getAddress(getAddressOptions);
-
-  // Now use the separate function to sign the message
-  const sign = await signMessageFunc(address, hash);
-
-  if (sign != '') {
-    const userId = await login(sign, publicKey, message, hash);
-    console.log("xverse: ", userId);
-    SetCookie('userId', userId);
-    SetCookie('sign', sign);
-    SetCookie('publicKey', publicKey);
-    SetCookie('wallet', 'xverse');
-    SetCookie('address', address)
-    // TODO improve this
-    if (userId) {
-      return true;
+      onFinish: (response: any) => {
+        address = response.addresses[0].address;
+        publicKey = response.addresses[0].publicKey;
+      },
+      onCancel: () => enqueueSnackbar('Dismissed', {variant: 'error', anchorOrigin: {horizontal: 'left', vertical: 'top'}}),
+    };
+  
+    // @ts-ignore
+    await getAddress(getAddressOptions);
+  
+    // Now use the separate function to sign the message
+    const sign = await signMessageFunc(address, hash);
+  
+    if (sign != '') {
+      const userId = await login(sign, publicKey, message, hash);
+      console.log("xverse: ", userId);
+      SetCookie('userId', userId);
+      SetCookie('sign', sign);
+      SetCookie('publicKey', publicKey);
+      SetCookie('wallet', 'xverse');
+      SetCookie('address', address)
+      // TODO improve this
+      if (userId) {
+        return true;
+      }
+    } else {
+      return false;
     }
-  } else {
-    return false;
+  } catch (error) {
+    console.log("Xverse: ", error)
+    enqueueSnackbar('Xverse Wallet not detected', {variant: 'error', anchorOrigin: {horizontal: 'left', vertical: 'top'}})
+    return false
   }
 
 };
@@ -72,7 +78,7 @@ export const signMessageFunc = async (address: any, hash: any) => {
   try {
     // @ts-ignore
     await signMessage(signMessageOptions);
-    console.log('sign: ', sign);
+    //console.log('sign: ', sign);
   } catch(error) {
     console.log(error);
   }

@@ -4,7 +4,9 @@ import axios from "axios";
 export const GetProfile = async () => {
   const val = GetCookie('userId');
   const userId = parseInt(val != '' ? val : '0');
-  return await axios.post('https://flickthebean.onrender.com/profile', {
+  const res = await axios.post('https://flickthebean.onrender.com/profile', {
     userId: userId,
   })
+  //console.log("Profile res: ", res)
+  return res
 }

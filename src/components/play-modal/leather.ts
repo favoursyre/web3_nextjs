@@ -5,7 +5,7 @@ import bitcore from 'bitcore-lib';
 import crypto from 'crypto';
 import { enqueueSnackbar } from 'notistack';
 
-const appConfig = new AppConfig(['store_write', 'publish_data']);
+const appConfig = new AppConfig([ 'store_write', 'publish_data' ]);
 const userSession = new UserSession({ appConfig });
 
 const getSignature = async () => {
@@ -60,12 +60,12 @@ export const handleLeather = async () => {
       onFinish: async () => {
         userSession.loadUserData();
         const signatureData = await getSignature();
-        flag: true;
+        flag = true;
         resolve(signatureData);  // Resolve the promise
       },
       onCancel: () => {
         resolve(false);
-        flag= false;
+        flag = false;
         enqueueSnackbar('Dismissed', {variant: 'error', anchorOrigin: {horizontal: 'left', vertical: 'top'}})
       },
       userSession: userSession,
@@ -77,6 +77,7 @@ export const handleLeather = async () => {
   if (data) {
     return true;
   } else {
+    enqueueSnackbar('Leather Wallet not detected', {variant: 'error', anchorOrigin: {horizontal: 'left', vertical: 'top'}})
     return false;
   }
 };
