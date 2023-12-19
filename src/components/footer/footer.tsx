@@ -3,14 +3,14 @@
 //This contains the script for footer component
 
 //Library
-import { useGlobalContext } from "@/app/react-query-provider/reactQueryProvider";
-import GetCookie from "@/hooks/cookies/getCookie";
+//import { useGlobalContext } from "@/app/react-query-provider/reactQueryProvider";
+//import GetCookie from "@/hooks/cookies/getCookie";
 import { usePathname } from "next/navigation";
 import { FC, useEffect } from "react";
 import { useState } from "react";
 import FAQModal from '../faq-modal/FAQModal';
-import UnlockRewards from "../unlock-rewards/unlockRewards";
-import { useFaqModalStore } from "@/store";
+//import UnlockRewards from "../unlock-rewards/unlockRewards";
+//import { useFaqModalStore } from "@/store";
 
 ///Commencing the code
 
@@ -22,16 +22,16 @@ const Footer: FC = () => {
   const router = usePathname();
   const[showFaqModal, setShowFaqModal] = useState(false);
   //let showFaqModal = useFaqModalStore((state) => state.showFaqModal)
-  const { isLoggedin, setIsLoggedIn } = useGlobalContext();
+  //const { isLoggedin, setIsLoggedIn } = useGlobalContext();
   //console.log("isLogged In", isLoggedin);
   //console.log("faq: ", showFaqModal);
 
-  useEffect(() => {
-    const userId = GetCookie('userId');
-    if(userId != '') {
-      setIsLoggedIn(true);
-    }
-  }, [])
+  // useEffect(() => {
+  //   const userId = GetCookie('userId');
+  //   // if(userId != '') {
+  //   //   setIsLoggedIn(true);
+  //   // }
+  // }, [])
 
   const handleFaqModal = () => {
     setShowFaqModal(!showFaqModal);

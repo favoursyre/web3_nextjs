@@ -1,5 +1,5 @@
 import { GetrecentFlickers } from "@/api/recent-flickers";
-import { useGlobalContext } from "@/app/react-query-provider/reactQueryProvider";
+//import { useGlobalContext } from "@/app/react-query-provider/reactQueryProvider";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
@@ -7,13 +7,16 @@ import PlayModal from "../play-modal/playModal";
 import RecentFlickersTable from "../recent-flickers-table/recentFlickerTable";
 import RecentFlickersModal from "../recent-flickers-modal/recentFlickersModal";
 import { useRouter } from "next/navigation";
+import GetCookie from "@/hooks/cookies/getCookie";
+import { enqueueSnackbar } from "notistack";
 
 const HomeContent:FC = () => {
   const[showRecentModal, setShowRecentModal] = useState(false);
   const[showModal, setShowModal] = useState(false);
   const searchParams = useSearchParams();
-  const { isLoggedin, setIsLoggedIn } = useGlobalContext();
+  //const { isLoggedin, setIsLoggedIn } = useGlobalContext();
   const search = searchParams.get('ref');
+  const userId = GetCookie('userId');
   const router = useRouter();
 
   const {data, isLoading, isRefetching} = useQuery({
@@ -23,10 +26,16 @@ const HomeContent:FC = () => {
 
 
   useEffect(() => {
-		setIsLoggedIn(true);
-    router.push('/flip-coin');
+		//setIsLoggedIn(true);
+
+    if (userId === '') {
+      null
+		} else {
+      enqueueSnackbar('Redirecting you to your dashboard', { variant: 'info', anchorOrigin: { horizontal: 'left', vertical: 'top' }})
+      router.push('/flip-coin');
+    }
     //console.log("component mounted", search);
-  }, [isLoggedin])
+  }, [])
 
   if(isLoading) {
     //console.log("Loading");

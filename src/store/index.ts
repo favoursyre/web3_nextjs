@@ -2,9 +2,12 @@
 
 //Libraries
 import {create} from "zustand";
-import { FaqModalStore, BalanceStore } from "../config/interfaces";
+import { FaqModalStore, BalanceStore, LoginStore } from "../config/interfaces";
+import GetCookie from '@/hooks/cookies/getCookie';
 
 //Commencing code
+const userId = GetCookie('userId');
+
 //Balance state store
 export const useBalanceStore = create<BalanceStore>((set) => ({
     balance: 0,
@@ -16,3 +19,9 @@ export const useFaqModalStore = create<FaqModalStore>((set) => ({
     showFaqModal: false,
     setShowFaqModal: (show) => set({ showFaqModal: show })
 }))
+
+//Login state store
+export const useLoginStore = create<LoginStore>((set) => ({
+    isLoggedin: userId === "" ? false : true,
+    setIsLoggedIn: (status) => set({ isLoggedin: status })
+}));

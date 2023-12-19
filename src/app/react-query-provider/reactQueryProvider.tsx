@@ -19,17 +19,17 @@ const queryClient = new QueryClient({
   }
 });
 
-export const Context = createContext<LoginContext>({
-  isLoggedin: false,
-  setIsLoggedIn: () => {}
-});
+// export const Context = createContext<LoginContext>({
+//   isLoggedin: false,
+//   setIsLoggedIn: () => {}
+// });
 
-export const useGlobalContext = () => useContext(Context)
+//export const useGlobalContext = () => useContext(Context)
 
 const ReactQueryProvider:FC<ReactQueryProviderProps> = ({ children }) => {
-  const [isLoggedin, setIsLoggedIn] = useState<boolean>(false);
+  //const [isLoggedin, setIsLoggedIn] = useState<boolean>(false);
   return (
-    <Context.Provider value={{isLoggedin, setIsLoggedIn}}>
+    // <Context.Provider value={{isLoggedin, setIsLoggedIn}}>
       <QueryClientProvider client={queryClient}>
         <html lang="en">
           <body>
@@ -45,7 +45,7 @@ const ReactQueryProvider:FC<ReactQueryProviderProps> = ({ children }) => {
           </body>
         </html>
       </QueryClientProvider>
-    </Context.Provider>
+    // </Context.Provider>
   );
 }
 

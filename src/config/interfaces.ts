@@ -32,12 +32,17 @@ export interface BalanceStore {
   updateBalance: (newBalance: number) => void;
 }
 
-
 //Interface for faq modal store
 export interface FaqModalStore {
   showFaqModal: boolean;
   setShowFaqModal: (show: boolean) => void
 }
+
+//Interface for login store
+export interface LoginStore {
+  isLoggedin: boolean,
+  setIsLoggedIn: (status: boolean) => void
+};
 
 //Interface for modal props
 export interface ModalProps {
@@ -95,4 +100,10 @@ export interface dataProps {
 export interface ProfileModalProps {
 	show: boolean;
   handleModal: () => void;
+}
+
+///Type for metadata arg props
+export type Props = {
+  params: { id: string }
+  //searchParams: { [key: string]: string | string[] | undefined }
 }

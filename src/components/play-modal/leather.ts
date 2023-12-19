@@ -8,9 +8,13 @@ import { enqueueSnackbar } from 'notistack';
 const appConfig = new AppConfig([ 'store_write', 'publish_data' ]);
 const userSession = new UserSession({ appConfig });
 
+const hash_ = (message: string): string => {
+  return bitcore.crypto.Hash.sha256(Buffer.from(message)).toString('hex');
+}
+
 const getSignature = async () => {
   let message = crypto.randomBytes(16).toString('hex');
-  let hash = bitcore.crypto.Hash.sha256(Buffer.from(message)).toString('hex');
+  let hash: string = hash_(message)
   let user;
 
   if (userSession.isUserSignedIn()) {
@@ -83,7 +87,7 @@ export const handleLeather = async () => {
 };
 
 export const getLeatherSignature = async (value: string) => {
-  const hash = bitcore.crypto.Hash.sha256(Buffer.from(value)).toString('hex');
+  let hash: string = hash_(value)
   let sign = '';
   let publicKey = '';
 

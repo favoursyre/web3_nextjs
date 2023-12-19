@@ -3,7 +3,7 @@
 ///This script is for play modal
 
 //Libraries
-import { useGlobalContext } from "@/app/react-query-provider/reactQueryProvider";
+//import { useGlobalContext } from "@/app/react-query-provider/reactQueryProvider";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { FC, useState, MouseEvent } from "react";
@@ -29,7 +29,7 @@ Object.defineProperty(global, "_bitcore", {
 const PlayModal: FC<PlayModalProps> = ({ show, handleModal }) => {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
-	const { isLoggedin, setIsLoggedIn } = useGlobalContext();
+	//const { isLoggedin, setIsLoggedIn } = useGlobalContext();
 
 	//Connect wallet
 	const connectWallet = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, wallet: string) => {
@@ -54,7 +54,7 @@ const PlayModal: FC<PlayModalProps> = ({ show, handleModal }) => {
 
 		if (flag) {
 			router.push('/flip-coin');
-			setIsLoggedIn(true);
+			//setIsLoggedIn(true);
 			setLoading(false);
 			enqueueSnackbar('Logged In', { variant: 'success', anchorOrigin: { horizontal: 'left', vertical: 'top' }})
 		} else {

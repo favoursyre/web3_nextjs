@@ -3,14 +3,14 @@
 //This is the header component
 
 //Libraries
-import { useGlobalContext } from '@/app/react-query-provider/reactQueryProvider';
+//import { useGlobalContext } from '@/app/react-query-provider/reactQueryProvider';
 import GetCookie from '@/hooks/cookies/getCookie';
 import RemoveCookie from '@/hooks/cookies/removeCookie';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from "react";
 import FAQModal from '../faq-modal/FAQModal';
 import ProfileModal from '../profile-modal/profileModal';
-import { useBalanceStore } from '@/store'
+import { useBalanceStore, useLoginStore } from '@/store'
 
 ///Commencing the code
 
@@ -25,8 +25,10 @@ const Header: FC = () => {
   const[showFaqModal, setShowFaqModal] = useState(false);
   const[showProfileModal, setShowProfileModal] = useState(false);
   const[pubKey, setPubkey] = useState('');
-  const { isLoggedin, setIsLoggedIn } = useGlobalContext();
+  //const { isLoggedin, setIsLoggedIn } = useGlobalContext();
+  let isLoggedin = useLoginStore(state => state.isLoggedin)
   let balance = useBalanceStore(state => state.balance);
+  const userId = GetCookie('userId');
 
   //console.log("NaN: ", "null" - 2)
 
@@ -57,7 +59,7 @@ const Header: FC = () => {
     RemoveCookie('publicKey');
     RemoveCookie('wallet');
     RemoveCookie('balance');
-    setIsLoggedIn(false);
+    //setIsLoggedIn(false);
     router.push('/');
 	}
 
@@ -132,8 +134,7 @@ const Header: FC = () => {
         </nav>
       </div>
       <FAQModal show={showFaqModal} handleModal={handleFaqModal} />
-      {/* { isLoggedin && <ProfileModal show={showProfileModal} handleModal={handleProfileModal} /> } */}
-      <ProfileModal show={showProfileModal} handleModal={handleProfileModal} />
+      {!isLoggedin ? <></> : <ProfileModal show={showProfileModal} handleModal={handleProfileModal} />}
     </header>
   )
 }

@@ -5,6 +5,7 @@ import FlipCoinContent from "@/components/flip-coin-content/flipCoinContent";
 import GetCookie from "@/hooks/cookies/getCookie";
 import { useEffect, useState } from "react";
 import { Metadata } from 'next'
+import { Props } from "@/config/interfaces";
 
 ///Commencing the code
 // const metadata: Metadata = {
@@ -22,6 +23,8 @@ export default function FlipCoin() {
   //const[userId, setUserId] = useState('');
 
   useEffect(() => {
+    document.title = "Dashboard | Bazuki"
+
     setTimeout(() => {
       setShow(true)
     }, 500);
