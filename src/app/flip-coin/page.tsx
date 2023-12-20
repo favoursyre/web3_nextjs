@@ -20,7 +20,7 @@ export default function FlipCoin() {
   const[isError, setIsError] = useState(false);
   const[show, setShow] = useState(false);
   const userId = GetCookie('userId');
-  //const[userId, setUserId] = useState('');
+  //const[userId, setUserId] = useState('syre');
 
   useEffect(() => {
     document.title = "Dashboard | Bazuki"

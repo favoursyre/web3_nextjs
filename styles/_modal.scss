@@ -17,6 +17,13 @@
 		background-color: rgba(0, 0, 0, 0.8);
 		width: 100vw;
 		height: 100vh;
+		//border: 1px solid white;
+
+		@include phonePro {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+		}
 	}
 
 	&.show {
@@ -31,7 +38,10 @@
 		padding: 32px 16px;
 		//border: 1px solid red;
 
-		
+		@include phonePro {
+			//border: 1px solid green;
+			width: 90%;
+		}
 	}
 
 	&__btn {
@@ -81,6 +91,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
+		//border: 1px solid red;
 
 		button {
 			width: 418px;
@@ -88,7 +99,13 @@
 			justify-content: center;
 			background-color: rgba(20, 29, 52, 1);
 			border-radius: 8.9px;
-						img {
+
+			@include phonePro {
+				position: relative;
+				width: 100%;
+			}
+
+			img {
 				width: unset;
 			}
 		}
@@ -96,5 +113,10 @@
 }
 
 .play-modal {
+	//border: 1px solid red;
+}
+
+
+.play-container {
 	//border: 1px solid red;
 }

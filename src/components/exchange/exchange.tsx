@@ -13,7 +13,7 @@ const Exchange = () => {
 	const[refetching, setRefetching] = useState(false);
 	const[loading, setLoading] = useState(false);
 	const router = useRouter();
-	const updateBalance = useBalanceStore(state => state.updateBalance);
+	const updateBalance = useBalanceStore((state) => state.updateBalance);
 	const {data, refetch, isError} = useQuery({
 		queryKey: ['getBalance'],
 		queryFn: GetExchangeBalance
@@ -25,6 +25,7 @@ const Exchange = () => {
 
 	useEffect(() => {
 		const currentBalance = GetCookie('balance');
+		//console.log("Bala: ", currentBalance)
 		// @ts-ignore
 		updateBalance(currentBalance)
 	})
@@ -81,6 +82,8 @@ const Exchange = () => {
   }
 
 	const handleFieldBtc = (e: ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault()
+
 		const value = e.target.value;
 		const btc = value.includes('.') ? parseFloat(value) : parseInt(value);
 		const brc = btc * 29411.76;
@@ -90,6 +93,8 @@ const Exchange = () => {
 	}
 
 	const handleFieldBrc = (e: ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault()
+
 		const value = e.target.value;
 		const brc = value.includes('.') ? parseFloat(value) : parseInt(value);
 		const btc = brc / 29411.76;
@@ -113,7 +118,7 @@ const Exchange = () => {
 							<div className="exchange__left">
 								<p className="exchange__subtitle mb-10">You pay</p>
 								<p className="exchange__score">
-									<input type="number" className="exchange__score-field" value={btc} placeholder="0" onChange={handleFieldBtc} disabled={!btcToBrc}  />
+									<input type="number" className="exchange__score-field" value={btc} placeholder="0" onChange={(e) => handleFieldBtc(e)} disabled={!btcToBrc}  />
 								</p>
 								<p className="exchange__total mt-15">$13.04</p>
 							</div>
@@ -129,7 +134,7 @@ const Exchange = () => {
 								<div className="exchange__left">
 									<p className="exchange__subtitle mb-10">You pay</p>
 									<p className="exchange__score">
-										<input type="number" className="exchange__score-field" value={brc} placeholder="0" onChange={handleFieldBrc} disabled={btcToBrc} />
+										<input type="number" className="exchange__score-field" value={brc} placeholder="0" onChange={(e) => handleFieldBrc(e)} disabled={btcToBrc} />
 									</p>
 									<p className="exchange__total mt-15">$13.04</p>
 								</div>
@@ -157,7 +162,7 @@ const Exchange = () => {
 							<div className="exchange__left">
 								<p className="exchange__subtitle mb-10">You pay</p>
 								<p className="exchange__score">
-									<input type="number" className="exchange__score-field" placeholder="0" value={btc} onChange={handleFieldBtc} disabled={!btcToBrc} />
+									<input type="number" className="exchange__score-field" placeholder="0" value={btc} onChange={(e) => handleFieldBtc(e)} disabled={!btcToBrc} />
 								</p>
 								<p className="exchange__total mt-15">$13.04</p>
 							</div>
@@ -173,7 +178,7 @@ const Exchange = () => {
 								<div className="exchange__left">
 									<p className="exchange__subtitle mb-10">You pay</p>
 									<p className="exchange__score">
-										<input type="number" className="exchange__score-field" value={brc} placeholder="0" onChange={handleFieldBrc} disabled={btcToBrc} />
+										<input type="number" className="exchange__score-field" value={brc} placeholder="0" onChange={(e) => handleFieldBrc(e)} disabled={btcToBrc} />
 									</p>
 									<p className="exchange__total mt-15">$13.04</p>
 								</div>

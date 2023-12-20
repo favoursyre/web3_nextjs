@@ -35,20 +35,17 @@ const Header: FC = () => {
   useEffect(() => {
     const key = GetCookie('publicKey');
     setPubkey(`${key.slice(0, 5)}....${key.slice(-8)}`);
-  }, [pubKey])
-
-  const handleNavbar = () => {
-    setOpenNav(!openNav);
-  }
+  }, [pubKey, showProfileModal])
 
   const handleFaqModal = () => {
     setShowFaqModal(!showFaqModal);
   }
 
   const handleProfileModal = () => {
-    //console.log("profile modal")
+    console.log("profile modal")
     //console.log("loh: ", isLoggedin)
-    setShowProfileModal(!showProfileModal);
+    //window.location.reload()
+    setShowProfileModal(() => !showProfileModal);
   }
 
   const logout = () => {
@@ -84,14 +81,17 @@ const Header: FC = () => {
       { pathName === '/flip-coin' && (
             <>
               <div>
-                <button className="btn-outline btn-deposit" onClick={() => router.push('/exchange')}><img src="/static/svgs/deposit.svg" /><span>Deposit</span></button>
+                <button className="btn-outline btn-deposit" onClick={() => router.push('/exchange')}>
+                  <img src="/static/svgs/deposit.svg" />
+                  <span>Deposit</span>
+                </button>
                 {/* <button className="btn-outline ml-10" onClick={() => router.push('/deposit')}>Deposit / Withdraw</button> */}
               </div>
 
               <div className="header__profile">
-                <figure 
+                <button 
                   className="btn-outline"
-                  onClick={handleProfileModal}
+                  onClick={() => handleProfileModal()}
                 >
                   <img
                     className="header__profile-image"
@@ -105,7 +105,7 @@ const Header: FC = () => {
                       alt="icon"
                     />
                   </div> */}
-                </figure>
+                </button>
                 <button className="btn-outline" onClick={() => {handleFaqModal()}}>
                   <img src="/static/svgs/qa.svg" alt="share icon" />
                 </button>

@@ -4,10 +4,12 @@
 
 //Libraries
 import Footer from '@/components/footer/Footer';
-import Header from '@/components/header/Header';
+//import Header from '@/components/header/Header';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackbarProvider } from 'notistack';
 import React, { FC, createContext, useContext, useState } from 'react';
+import dynamic from "next/dynamic";
+const Header = dynamic(() => import("@/components/header/Header"), { ssr: false })
 import { LoginContext, ReactQueryProviderProps } from '@/config/interfaces';
 
 //Commencing the code

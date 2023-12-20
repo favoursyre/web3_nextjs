@@ -60,25 +60,30 @@
 		font-size: 16px;
 		font-weight: 700;
 		font-family: 'Play';
-		line-height: 18.51px;
+		line-height: 10px;
 		position: relative;
 		left: 10%;
 		top: 10px;
 		transform: translate(-50%, -50%);
 		//border: 1px solid yellow;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: -10px;
 
 		@include tabletPro {
-			left: 20%;
+			left: 15%;
+			gap: 15%;
 		}
 
 		@include phonePro {
-			left: 40%;
+			left: 30%;
 			font-size: 13px;
 		}
 
 		@include phoneMini {
-			left: 50%;
-			
+			left: 40%;
 		}
 	
 		span {

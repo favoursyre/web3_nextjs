@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { FC, useEffect } from "react";
 import { useState } from "react";
 import FAQModal from '../faq-modal/FAQModal';
+import Link from "next/link"
 //import UnlockRewards from "../unlock-rewards/unlockRewards";
 //import { useFaqModalStore } from "@/store";
 
@@ -44,7 +45,7 @@ const Footer: FC = () => {
       <h3 className="footer__heading">
         3% fees apply for every flip. Refer to <button onClick={() => handleFaqModal()} className="footer__heading-number">FAQs</button> for more information.
       </h3>
-      <h3 className="footer__subheading">Game powered by https://ordinals.com/   <br /> <span>All rights reserved to Flick the Bean</span></h3>
+      <h3 className="footer__subheading"><span>Game powered by <Link href="https://ordinals.com/">Ordinals</Link>   </span><br /> <span>All rights reserved to Flick the Bean</span></h3>
       <FAQModal show={showFaqModal} handleModal={handleFaqModal} />
     </footer>
   )

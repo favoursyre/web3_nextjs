@@ -94,7 +94,14 @@
 		}
 
 		@include tablet {
-			width: 50%;
+			gap: 5px;
+			width: 35%;
+		}
+
+		@include tabletMini {
+			left: 2%;
+			//width: 32%;
+			//gap: 1px;
 		}
 
 		@include phonePro {
@@ -118,6 +125,12 @@
 		}
 
 		span {
+			//border: 1px solid red;
+
+			@include tablet {
+				display: none;
+			}
+
 			@include phoneMini {
 				display: none;
 			}
@@ -134,6 +147,11 @@
 		display: flex;
 		align-items: center;
 		gap: 15px;
+		//border: 1px solid white;
+
+		@include tablet {
+			gap: 5px;
+		}
 
 		&-figure {
 			width: 39px;
